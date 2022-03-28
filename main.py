@@ -9,21 +9,22 @@ def find_contours(img, color):
 
     return contours
 
-img = cv2.imread("pool_two_bins.jpg")
+img = cv2.imread("green_shapes.jpg")
 if img.any() == None:
     print("Не найдена картинка")
     exit()
 drawing = img.copy()
 color = (
-          (30, 80, 0),
-          (70, 200, 255)  
+          (56, 190, 90),
+          (74, 255, 255)  
         )
 contours = find_contours(img, color)
 
 if contours:
     for cnt in contours:
-        if cv2.contourArea(cnt) > 50:
-            contour_area = cv2.contourArea(cnt)
+        contour_area = cv2.contourArea(cnt)
+        if contour_area > 50:
+            
             print("Площадь контура:", contour_area)
 
             cv2.drawContours(drawing, [cnt], 0, (255, 255, 255), 2)
